@@ -153,9 +153,10 @@ def _internal_read_single_cmtsolution(buf):
     # The first line encodes the preliminary epicenter.
     line = buf.readline()
 
-    hypocenter_catalog = line[:5].strip().decode()
+    hypocenter_catalog = line.split()[0].strip().decode()
 
-    origin_time = line[5:].strip().split()[:6]
+
+    origin_time = line.strip().split()[1:7]
     values = list(map(int, origin_time[:-1])) + \
         [float(origin_time[-1])]
     try:
